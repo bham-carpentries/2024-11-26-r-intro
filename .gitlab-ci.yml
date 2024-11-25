@@ -1,0 +1,18 @@
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
+stages:
+  - dummy
+
+default:
+  image: python:3.11
+  tags:
+    - bear-gitlab-runners
+
+nothing:
+  stage: dummy
+  script:
+    - echo "hello"
+
+
