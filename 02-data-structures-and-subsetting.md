@@ -320,8 +320,7 @@ str(weather)
 ```
 
 ``` output
-'data.frame':	4 obs. of  4 variables:
- $ X          : int  1 2 3 4
+'data.frame':	4 obs. of  3 variables:
  $ island     : chr  "torgersen" "biscoe" "dream" "deception"
  $ temperature: chr  "1.6" "1.5" "-2.6" "-3.4 or 3.5"
  $ snowfall   : int  1 0 1 1
@@ -766,7 +765,7 @@ pizza_price
 ## Data frames
 
 We have data frames at the very beginning of this lesson, they represent
-a table of data. We didn't go much further into detail with our example cat
+a table of data. We didn't go much further into detail with our example weather
 data frame:
 
 

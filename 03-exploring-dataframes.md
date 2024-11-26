@@ -101,11 +101,11 @@ head(weather)
 ```
 
 ``` r
-typof(weather)
+typeof(weather)
 ```
 
-``` error
-Error in typof(weather): could not find function "typof"
+``` output
+[1] "list"
 ```
 
 ## Adding columns and rows in data frames
