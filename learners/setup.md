@@ -2,6 +2,12 @@
 title: Setup
 ---
 
+## Data Setup 
+We will be using some example data in the lesson. 
+Download the file using the link below and extract it to your computer:
+ - [zip file of raw data](../episodes/data/rcourse-data.zip).
+
+
 ## Software Setup
 
 ::::::::::::::::::::::::::::::::::::::: discussion
