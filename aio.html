@@ -456,13 +456,15 @@ and install RStudio here</a></li>
 <hr class="half-width">
 <p>We will begin with raw data, perform exploratory analyses, and learn
 how to plot results graphically. We’ll use a version of the Palmer
-Penguins dataset dataset from <a href="https://allisonhorst.github.io/palmerpenguins/" class="external-link">&lt;https://allisonhorst.github.io/palmerpenguins/&gt;</a>
-that we have adapted for the purposes of this course. The Palmer
-Penguins dataset provides morphological measurements (bill length, bill
-depth, flipper length, body mass) for three penguin species (Adélie,
-Chinstrap, and Gentoo) collected from three islands (Torgersen, Dream,
-and Biscoe) in the Palmer Archipelago, Antarctica.</p>
-<figure><img src="fig/penguins_ccby4_by_at_allison_horst.png" alt="Meet the penguins cartoon illustration of the penguin species Chinstrap! Adelie! and Gentoo! by @Allison Horst (CC-BY-4.0)" class="figure mx-auto d-block"></figure><p>Can you read the data into R? Can you plot relationship between bill
+Penguins dataset dataset from the <a href="https://allisonhorst.github.io/palmerpenguins/" class="external-link">Palmer Penguins
+package</a> that we have adapted for the purposes of this course. The
+Palmer Penguins dataset provides morphological measurements (bill
+length, bill depth, flipper length, body mass) for three penguin species
+(Adélie, Chinstrap, and Gentoo) collected from three islands (Torgersen,
+Dream, and Biscoe) in the Palmer Archipelago, Antarctica.</p>
+<figure><img src="fig/penguins_ccby4_by_at_allison_horst.png" alt="Meet the penguins cartoon illustration of the penguin species Chinstrap! Adelie! and Gentoo! by @Allison Horst (CC-BY-4.0)" class="figure mx-auto d-block"><div class="figcaption">Meet the penguins cartoon illustration of the
+penguin species Chinstrap! Adelie! and Gentoo! by <span class="citation">@Allison</span> Horst (CC-BY-4.0)</div>
+</figure><p>Can you read the data into R? Can you plot relationship between bill
 length and flipper length? Can you calculate the mean body mass of
 penguins on the island of Dream? By the end of these lessons you will be
 able to explore key relationships in the data in minutes!</p>
@@ -1632,7 +1634,7 @@ more elements of the vector are <code>TRUE</code>).</p>
   Solution to challenge 1
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The following can be used as R variables:</p>
 <div class="codewrapper sourceCode" id="cb100">
@@ -1691,7 +1693,7 @@ following program?</p>
   Solution to challenge 2
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb104">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1746,7 +1748,7 @@ compare mass to depth. Is mass larger than depth?</p>
   Solution to challenge 3
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>One way of answering this question in R is to use the
 <code>&gt;</code> to set up the following:</p>
@@ -1786,7 +1788,7 @@ order</p>
   Solution to challenge 4
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>We can extract the elements in reverse order by generating the
 sequence 26, 25, … 1 using the <code>:</code> operator:</p>
@@ -1864,7 +1866,7 @@ neighbour. Did you have different strategies?</p>
   Solution to challenge 5
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb117">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2368,8 +2370,7 @@ written by the <code>str()</code> function:</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>'data.frame':	4 obs. of  4 variables:
- $ X          : int  1 2 3 4
+<pre class="output" tabindex="0"><code>'data.frame':	4 obs. of  3 variables:
  $ island     : chr  "torgersen" "biscoe" "dream" "deception"
  $ temperature: chr  "1.6" "1.5" "-2.6" "-3.4 or 3.5"
  $ snowfall   : int  1 0 1 1</code></pre>
@@ -2876,7 +2877,7 @@ The same is possible for names:</p>
 <hr class="half-width">
 <p>We have data frames at the very beginning of this lesson, they
 represent a table of data. We didn’t go much further into detail with
-our example cat data frame:</p>
+our example weather data frame:</p>
 <div class="codewrapper sourceCode" id="cb97">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -3085,7 +3086,7 @@ the data to the console</p>
   Tip 1.1
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Show the content of any variable by typing its name.</p>
 </div>
@@ -3099,7 +3100,7 @@ the data to the console</p>
   Solution to Challenge 1.1
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Two correct solutions:</p>
 <pre><code><span><span class="va">weather</span></span>
@@ -3128,7 +3129,7 @@ the <code>weather</code> table.</p>
   Tip 1.2
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>In the chapter “Data types” we saw two functions that can show data
 types. One printed just a single word, the data type name. The other
@@ -3145,7 +3146,7 @@ the second here.</p>
   Solution to Challenge 1.2
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <pre><code><span> <span class="fu">str</span><span class="op">(</span><span class="va">weather</span><span class="op">)</span></span></code></pre>
 </div>
@@ -3177,7 +3178,7 @@ temperature!</li>
   Tip 1.3
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>Scroll up to the section about the <a href="#the-type-hierarchy">type
 hierarchy</a> to review the available data types</p>
@@ -3192,7 +3193,7 @@ hierarchy</a> to review the available data types</p>
   Solution to Challenge 1.3
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <ul>
 <li>temperature is expressed on a continuous scale (real numbers). The R
@@ -3227,7 +3228,7 @@ data type after executing to see if you were right.</p>
   Tip 1.4
   </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
 <div class="accordion-body">
 <p>Revisit the hierarchy of data types when two different data types are
 combined.</p>
@@ -3242,7 +3243,7 @@ combined.</p>
   Solution to challenge 1.4
   </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
+<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
 <div class="accordion-body">
 <p>The data type of the column “temperature” is “character”. The
 assigned data type is “double”. Combining two data types yields the data
@@ -3273,7 +3274,7 @@ data type yet. Coerce the column to floating point numbers.</p>
   Tip 1.5
   </h4>
 </button>
-<div id="collapseSolution9" class="accordion-collapse collapse" data-bs-parent="#accordionSolution9" aria-labelledby="headingSolution9">
+<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
 <div class="accordion-body">
 <p>The functions to convert data types start with <code>as.</code>. You
 can look for the function further up in the manuscript or use the
@@ -3290,7 +3291,7 @@ the TAB key.</p>
   Solution to Challenge 1.5
   </h4>
 </button>
-<div id="collapseSolution10" class="accordion-collapse collapse" data-bs-parent="#accordionSolution10" aria-labelledby="headingSolution10">
+<div id="collapseSolution10" class="accordion-collapse collapse" aria-labelledby="headingSolution10" data-bs-parent="#accordionSolution10">
 <div class="accordion-body">
 <p>There are two functions that are synonymous for historic reasons:</p>
 <pre><code><span><span class="va">weather</span><span class="op">$</span><span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu">as.double</span><span class="op">(</span><span class="va">weather</span><span class="op">$</span><span class="va">temp</span><span class="op">)</span></span>
@@ -3330,7 +3331,7 @@ is returned in each case.</p>
   Solution to Challenge 2
   </h4>
 </button>
-<div id="collapseSolution11" class="accordion-collapse collapse" data-bs-parent="#accordionSolution11" aria-labelledby="headingSolution11">
+<div id="collapseSolution11" class="accordion-collapse collapse" aria-labelledby="headingSolution11" data-bs-parent="#accordionSolution11">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb122">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3650,12 +3651,12 @@ about its structure:</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">typof</span><span class="op">(</span><span class="va">weather</span><span class="op">)</span></span></code></pre>
+<code class="sourceCode R"><span><span class="fu">typeof</span><span class="op">(</span><span class="va">weather</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="codewrapper">
-<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="error" tabindex="0"><code>Error in typof(weather): could not find function "typof"</code></pre>
+<pre class="output" tabindex="0"><code>[1] "list"</code></pre>
 </div>
 </section><section><h2 class="section-heading" id="adding-columns-and-rows-in-data-frames">Adding columns and rows in data frames<a class="anchor" aria-label="anchor" href="#adding-columns-and-rows-in-data-frames"></a>
 </h2>
@@ -4427,7 +4428,7 @@ instead of a listing of objects.</p>
     }
     else all.names
 }
-&lt;bytecode: 0x563a075d2d60&gt;
+&lt;bytecode: 0x55d747636d60&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>What’s going on here?</p>
@@ -5408,9 +5409,9 @@ similar syntax to other dplyr functions.</p>
 <pre class="output" tabindex="0"><code># A tibble: 3 × 2
   species   mean_body_mass
   &lt;chr&gt;              &lt;dbl&gt;
-1 Gentoo             5020
-2 Chinstrap          3552.
-3 Adelie             3692.</code></pre>
+1 Gentoo             5045
+2 Chinstrap          3782.
+3 Adelie             3465 </code></pre>
 </div>
 </div>
 </div>
@@ -5642,7 +5643,7 @@ varies with flipper length (mm) instead of body mass :</p>
   Solution to challenge 1
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Here is one possible solution:</p>
 <div class="codewrapper sourceCode" id="cb10">
@@ -5800,7 +5801,7 @@ example. What happened?</p>
   Solution to challenge 3
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>The lines now get drawn over the points!</p>
 <div class="codewrapper sourceCode" id="cb18">
@@ -5908,7 +5909,7 @@ plot from Challenge 1 example.</p>
   Solution to challenge 4a
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Here a possible solution: Notice that the <code>color</code> argument
 is supplied outside of the <code>aes()</code> function. This means that
@@ -5948,7 +5949,7 @@ point shapes in R</a></p>
   Solution to challenge 4b
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>Here is a possible solution: Notice that supplying the
 <code>color</code> argument inside the <code>aes()</code> functions
@@ -6089,7 +6090,7 @@ answer on Stack Overflow with reusable code to modify!</p>
   Solution to Challenge 5
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>Here a possible solution: <code>xlab()</code> and <code>ylab()</code>
 set labels for the x and y axes, respectively The axis title, text and
