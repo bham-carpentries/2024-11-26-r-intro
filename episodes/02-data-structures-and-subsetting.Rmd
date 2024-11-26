@@ -486,7 +486,7 @@ pizza_price
 ## Data frames
 
 We have data frames at the very beginning of this lesson, they represent
-a table of data. We didn't go much further into detail with our example cat
+a table of data. We didn't go much further into detail with our example weather
 data frame:
 
 ```{r}

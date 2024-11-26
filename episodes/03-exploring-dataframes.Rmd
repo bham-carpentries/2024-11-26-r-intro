@@ -49,7 +49,7 @@ colnames(weather)
 
 head(weather)
 
-typof(weather)
+typeof(weather)
 ```
 
 ## Adding columns and rows in data frames

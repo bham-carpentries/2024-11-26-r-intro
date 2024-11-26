@@ -54,9 +54,9 @@ Please ensure you have the latest version of R and RStudio installed on your mac
 
 ## Data Set
 
-We will begin with raw data, perform exploratory analyses, and learn how to plot results graphically. We'll use a version of the Palmer Penguins dataset dataset from [<https://allisonhorst.github.io/palmerpenguins/>](https://allisonhorst.github.io/palmerpenguins/) that we have adapted for the purposes of this course. The Palmer Penguins dataset provides morphological measurements (bill length, bill depth, flipper length, body mass) for three penguin species (Adélie, Chinstrap, and Gentoo) collected from three islands (Torgersen, Dream, and Biscoe) in the Palmer Archipelago, Antarctica.
+We will begin with raw data, perform exploratory analyses, and learn how to plot results graphically. We'll use a version of the Palmer Penguins dataset dataset from the [Palmer Penguins package](https://allisonhorst.github.io/palmerpenguins/) that we have adapted for the purposes of this course. The Palmer Penguins dataset provides morphological measurements (bill length, bill depth, flipper length, body mass) for three penguin species (Adélie, Chinstrap, and Gentoo) collected from three islands (Torgersen, Dream, and Biscoe) in the Palmer Archipelago, Antarctica.
 
-![](fig/penguins_ccby4_by_at_allison_horst.png){alt='Meet the penguins cartoon illustration of the penguin species Chinstrap! Adelie! and Gentoo! by @Allison Horst (CC-BY-4.0)'}
+![Meet the penguins cartoon illustration of the penguin species Chinstrap! Adelie! and Gentoo! by @Allison Horst (CC-BY-4.0)](fig/penguins_ccby4_by_at_allison_horst.png){alt='Meet the penguins cartoon illustration of the penguin species Chinstrap! Adelie! and Gentoo! by @Allison Horst (CC-BY-4.0)'}
 
 Can you read the data into R? Can you plot relationship between bill length and flipper length? Can you calculate the mean body mass of penguins on the island of Dream?
 By the end of these lessons you will be able to explore key relationships in the
