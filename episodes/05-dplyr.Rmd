@@ -30,6 +30,7 @@ data by a certain variable(s), or we even calculate summary statistics. We can
 do these operations using the normal base R operations:
 
 ```{r eval=TRUE, echo=FALSE}
+library(tidyverse)
 penguins <- read_csv("data/penguins_teaching.csv", col_types = cols(year = col_character()))
 ```
 
