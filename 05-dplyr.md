@@ -877,9 +877,9 @@ body_mass_10penguins_byspecies
 # A tibble: 3 × 2
   species   mean_body_mass
   <chr>              <dbl>
-1 Gentoo             5300 
-2 Chinstrap          3658.
-3 Adelie             3648.
+1 Gentoo              5015
+2 Chinstrap           3765
+3 Adelie              3750
 ```
 
 :::::::::::::::::::::::::
