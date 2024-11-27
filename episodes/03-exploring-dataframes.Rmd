@@ -159,6 +159,18 @@ weather <- rbind(weather, weather)
 weather
 ```
 
+## Saving Our Data Frame
+
+We can use the write.table function to save our new data frame:
+
+```{r, eval=FALSE}
+write.table(
+  file="results/prepared_weather.csv",
+  sep=",", 
+  quote=FALSE, 
+  row.names=FALSE
+)
+```
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
