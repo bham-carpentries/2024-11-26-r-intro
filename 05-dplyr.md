@@ -30,6 +30,11 @@ data by a certain variable(s), or we even calculate summary statistics. We can
 do these operations using the normal base R operations:
 
 
+``` error
+Error in read_csv("data/penguins_teaching.csv", col_types = cols(year = col_character())): could not find function "read_csv"
+```
+
+
 ``` r
 mean(penguins$body_mass_g[penguins$species == "Adelie"])
 ```
@@ -135,6 +140,9 @@ penguins
 # ℹ 2 more variables: sex <chr>, year <chr>
 ```
 
+Notice that we specify that the year column should be loaded as text (character
+data type). We do this because as the dataset only contains three year's worth of data we want to treat "year" as a categorical variable. It is helpful when plotting to store this categorical variable as text. 
+
 We can see that penguins consists of a 344 by 8 `tibble`. We see the variable names, and an abbreviation  indicating what type of data is stored in each variable.
 
 A tibble is a way of storing tabular data - a modern version of data frames, which is part of the tidyverse. 
@@ -183,44 +191,61 @@ head(year_island_bmg)
 ![](fig/13-dplyr-fig1.png){alt='Diagram illustrating use of select function to select two columns of a data frame'}
 
 If we open up `year_island_bmg` we'll see that it only contains the year,
-island and body mass (g) Above we used 'normal' grammar, but the strengths of
+island and body mass (g).  
+
+Note that we can also use select to remove columns we don't want in our dataset:
+
+
+``` r
+noyear_noisland_nobmg <- select(penguins, -year, -island, -body_mass_g)
+head(noyear_noisland_nobmg)
+```
+
+``` output
+# A tibble: 6 × 5
+  species bill_length_mm bill_depth_mm flipper_length_mm sex   
+  <chr>            <dbl>         <dbl>             <dbl> <chr> 
+1 Adelie            39.1          18.7              181  male  
+2 Adelie            39.5          17.4              186  female
+3 Adelie            40.3          18                195  female
+4 Adelie            43.9          17.2              201. male  
+5 Adelie            36.7          19.3              193  female
+6 Adelie            39.3          20.6              190  male  
+```
+
+
+Above we used 'normal' grammar, but the strengths of
 `dplyr` lie in combining several functions using pipes. Since the pipes grammar
 is unlike anything we've seen in R before, let's repeat what we've done above
 using pipes.
 
 
 ``` r
+# before: year_island_bmg <- select(penguins, year, island, body_mass_g)
 year_island_bmg <- penguins |> select(year, island, body_mass_g)
+head(year_island_bmg)
+```
+
+``` output
+# A tibble: 6 × 3
+  year  island    body_mass_g
+  <chr> <chr>           <dbl>
+1 2007  Torgersen       3750 
+2 2007  Torgersen       3800 
+3 2007  Torgersen       3250 
+4 2007  Torgersen       4202.
+5 2007  Torgersen       3450 
+6 2007  Torgersen       3650 
 ```
 
 To help you understand why we wrote that in that way, let's walk through it step
 by step. First we summon the penguins data frame and pass it on, using the pipe
 symbol `|>`, to the next step, which is the `select()` function. In this case
-we don't specify which data object we use in the `select()` function since in
+we don't specify which data object we use in the `select()` function since it
 gets that from the previous pipe. **Fun Fact**: There is a good chance you have
 encountered pipes before in the shell. In R, a pipe symbol is `|>` while in the
 shell it is `|` but the concept is the same!
 
-Note that we want to remove one column only from the `penguins` data, for example,
-removing the `island` column.
-
-
-``` r
-smaller_penguins_data <- select(penguins, -island)
-head(smaller_penguins_data) # Notice that the island column has been removed
-```
-
-``` output
-# A tibble: 6 × 7
-  species bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex   year 
-  <chr>            <dbl>         <dbl>             <dbl>       <dbl> <chr> <chr>
-1 Adelie            39.1          18.7              181        3750  male  2007 
-2 Adelie            39.5          17.4              186        3800  fema… 2007 
-3 Adelie            40.3          18                195        3250  fema… 2007 
-4 Adelie            43.9          17.2              201.       4202. male  2007 
-5 Adelie            36.7          19.3              193        3450  fema… 2007 
-6 Adelie            39.3          20.6              190        3650  male  2007 
-```
 
 
 :::::::::::::::::::::::::::::::::::::::::  callout
@@ -264,6 +289,19 @@ island of "Dream", we can combine `select` and `filter`
 dream_year_island_bmg <- penguins |>
     filter(island == "Dream") |>
     select(year, body_mass_g)
+head(dream_year_island_bmg)
+```
+
+``` output
+# A tibble: 6 × 2
+  year  body_mass_g
+  <chr>       <dbl>
+1 2007         3250
+2 2007         3900
+3 2007         3300
+4 2007         3900
+5 2007         3325
+6 2007         4150
 ```
 Notice how this code is indented and formatted over multiple lines to improve readability.
 
@@ -276,10 +314,25 @@ for a specific year (e.g., 2007), we can do as below.
 
 ``` r
 dream_island_2007 <- penguins |>
-  filter(island == "Dream", year == 2007) |>
+  filter(island == "Dream", year == "2007") |> 
   select(species, body_mass_g)
+
+head(dream_island_2007)
 ```
 
+``` output
+# A tibble: 6 × 2
+  species body_mass_g
+  <chr>         <dbl>
+1 Adelie         3250
+2 Adelie         3900
+3 Adelie         3300
+4 Adelie         3900
+5 Adelie         3325
+6 Adelie         4150
+```
+
+Notice that 2007 is in quotes ("2007") as the year column is stored as text (character datatype).
 
 As with last time, first we pass the penguins data frame to the `filter()`
 function, then we pass the filtered version of the penguins data frame to the
@@ -368,6 +421,7 @@ You will notice that the structure of the data frame where we used `group_by()`
 value `island` (at least in the example above).
 
 ![](fig/13-dplyr-fig2-updated.png){alt='Diagram illustrating how the group by function oraganizes a data frame into groups'}
+
 :::::::::::: callout
 You may have noticed this output when using the group_by() function:
 
@@ -446,6 +500,23 @@ bm_byyear_byspecies <- penguins |>
 `.groups` argument.
 ```
 
+``` r
+head(bm_byyear_byspecies)
+```
+
+``` output
+# A tibble: 6 × 3
+# Groups:   year [2]
+  year  species   mean_body_mass_g
+  <chr> <chr>                <dbl>
+1 2007  Adelie               3707.
+2 2007  Chinstrap            3694.
+3 2007  Gentoo               5071.
+4 2008  Adelie               3742 
+5 2008  Chinstrap            3800 
+6 2008  Gentoo               5020.
+```
+
 That is already quite powerful, but it gets even better! You're not limited to defining 1 new variable in `summarize()`.
 
 
@@ -463,6 +534,23 @@ bm_byyear_byspecies <- penguins |>
 `.groups` argument.
 ```
 
+``` r
+head(bm_byyear_byspecies)
+```
+
+``` output
+# A tibble: 6 × 4
+# Groups:   year [2]
+  year  species   mean_body_mass_g sd_body_mass_g
+  <chr> <chr>                <dbl>          <dbl>
+1 2007  Adelie               3707.           451.
+2 2007  Chinstrap            3694.           328.
+3 2007  Gentoo               5071.           583.
+4 2008  Adelie               3742            455.
+5 2008  Chinstrap            3800            519.
+6 2008  Gentoo               5020.           515.
+```
+
 ## count() and n()
 
 A very common operation is to count the number of observations for each
@@ -476,7 +564,7 @@ optionally sort the results in descending order by adding `sort=TRUE`:
 
 ``` r
 penguins |>
-    filter(year == 2007) |>
+    filter(year == "2007") |>
     count(island, sort = TRUE)
 ```
 
@@ -551,6 +639,23 @@ bm_byyear_byisland_byspecies <- penguins |>
 the `.groups` argument.
 ```
 
+``` r
+head(bm_byyear_byisland_byspecies)
+```
+
+``` output
+# A tibble: 6 × 5
+# Groups:   year, island [4]
+  year  island    species   mean_body_mass_kg sd_body_mass_kg
+  <chr> <chr>     <chr>                 <dbl>           <dbl>
+1 2007  Biscoe    Adelie                 3.62           0.292
+2 2007  Biscoe    Gentoo                 5.07           0.583
+3 2007  Dream     Adelie                 3.67           0.527
+4 2007  Dream     Chinstrap              3.69           0.328
+5 2007  Torgersen Adelie                 3.79           0.441
+6 2008  Biscoe    Adelie                 3.63           0.478
+```
+
 ![An illustration of the mutate function [Artwork by @allison_horst](https://twitter.com/allison_horst)](fig/mutate_ccby4_artwork_by_at_allison_horst.png){alt='Cartoon of cute fuzzy monsters dressed up as different X-men characters, working together to add a new column to an existing data frame. Stylized title text reads "dplyr::mutate - add columns, keep existing."'}
 
 ## Connect mutate with logical filtering: ifelse
@@ -565,7 +670,27 @@ of the data frame will not change) or for updating values depending on this give
 ## keeping all data but "filtering" after a certain condition
 # calculate bill length / depth ratio for only for Adelie penguins
 bill_morph_adelie <- penguins |>
-    mutate(bill_ratio = ifelse(species == "Adelie", bill_length_mm/bill_depth_mm, NA))  
+    mutate(
+      bill_ratio = ifelse(
+        species == "Adelie", 
+        bill_length_mm/bill_depth_mm, 
+        NA
+      )
+    )  
+head(bill_morph_adelie)
+```
+
+``` output
+# A tibble: 6 × 9
+  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+  <chr>   <chr>              <dbl>         <dbl>             <dbl>       <dbl>
+1 Adelie  Torgersen           39.1          18.7              181        3750 
+2 Adelie  Torgersen           39.5          17.4              186        3800 
+3 Adelie  Torgersen           40.3          18                195        3250 
+4 Adelie  Torgersen           43.9          17.2              201.       4202.
+5 Adelie  Torgersen           36.7          19.3              193        3450 
+6 Adelie  Torgersen           39.3          20.6              190        3650 
+# ℹ 3 more variables: sex <chr>, year <chr>, bill_ratio <dbl>
 ```
 
 :::::::::::::::::::::::::::::::::::::::  challenge
@@ -642,8 +767,8 @@ ncol(penguins_torgersen)
 
 ## Challenge 2
 
-Calculate the average body mass per species.
-Which species has the heaviest average body mass, and which has the lightest?
+Calculate the average flipper length per species.
+Which species has the longest average flipper length, and which has the shortest?
 
 You should start from the `penguins` tibble.
 
@@ -739,7 +864,7 @@ similar syntax to other dplyr functions.
 
 ``` r
 body_mass_10penguins_byspecies <- penguins |>
-  filter(year == 2007) |>
+  filter(year == "2007") |> 
   group_by(species) |>
   sample_n(10) |>
   summarize(mean_body_mass = mean(body_mass_g)) |>
@@ -752,9 +877,9 @@ body_mass_10penguins_byspecies
 # A tibble: 3 × 2
   species   mean_body_mass
   <chr>              <dbl>
-1 Gentoo             5045 
-2 Chinstrap          3782.
-3 Adelie             3465 
+1 Gentoo             5300 
+2 Chinstrap          3658.
+3 Adelie             3648.
 ```
 
 :::::::::::::::::::::::::
@@ -764,10 +889,15 @@ body_mass_10penguins_byspecies
 
 ## Further reading
 We recommend the following resources for some additional reading on the topic of this episode:
+
 - [R for Data Science](https://r4ds.hadley.nz/) (online book)
+
 - [Data Wrangling Cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) (pdf file)
+
 - [Introduction to dplyr](https://dplyr.tidyverse.org/) (online documentation)
+
 - [Data wrangling with R and RStudio](https://www.rstudio.com/resources/webinars/data-wrangling-with-r-and-rstudio/) (online video)
+
 - [Tidyverse Skills for Data Science](https://jhudatascience.org/tidyversecourse/) (online book)
 
 :::::::::::::::::::::::::::::::::::::::: keypoints

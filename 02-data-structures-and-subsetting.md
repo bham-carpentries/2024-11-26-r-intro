@@ -922,15 +922,15 @@ _____(weather)
 #    The correct data type is: ____________.
 
 # 4. Correct the 4th temperature data point with the mean of the two given values
-weather$temp[4] <- -3.45
+weather$temperature[4] <- -3.45
 #    print the data again to see the effect
 weather
 
 # 5. Convert the temperature to the right data type
-weather$temp <- ______________(weather$temp)
+weather$temperature <- ______________(weather$temperature)
 
 #    Calculate the mean to test yourself
-mean(weather$temp)
+mean(weather$temperature)
 
 # If you see the correct mean value (and not NA), you did the exercise
 # correctly!
@@ -1075,8 +1075,8 @@ auto-complete function: Type "`as.`" and then press the TAB key.
 There are two functions that are synonymous for historic reasons:
 
 ```
-weather$temp <- as.double(weather$temp)
-weather$temp <- as.numeric(weather$temp)
+weather$temperature <- as.double(weather$temperature)
+weather$temperature <- as.numeric(weather$temperature)
 ```
 ::::::::::::::: 
 ::::::::::::::::::::::::::::::::::::::::::::::::::

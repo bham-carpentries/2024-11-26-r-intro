@@ -313,6 +313,19 @@ weather
 8 deception       -3.45        1  13
 ```
 
+## Saving Our Data Frame
+
+We can use the write.table function to save our new data frame:
+
+
+``` r
+write.table(
+  file="results/prepared_weather.csv",
+  sep=",", 
+  quote=FALSE, 
+  row.names=FALSE
+)
+```
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 

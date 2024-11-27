@@ -30,6 +30,9 @@ While this course covered the essentials, some key topics were only mentioned in
 - If you plan to analyze survey data, experimental treatments, or any other dataset involving categories, learning how to create and manipulate factors is crucial.
 - See [Chapter 16 Factors](https://r4ds.hadley.nz/factors.html) in R for Data Science (2e) by Hadley Wickham.
 
+## Missing Data
+- If you will be using R for statistical analysis it is essential that you know how R represents missing values see [R for Data Science - missing values](https://r4ds.hadley.nz/missing-values)
+
 ### Data Structures: Matrices and Arrays
 - Matrices and arrays are foundational data structures in R, used to represent multi-dimensional data. 
 - These structures are particularly important if you intend to:
@@ -63,9 +66,6 @@ The skills you’ve gained here form a strong foundation for using R in scientif
 - Your **peers**, by sharing scripts and workflows that others can understand and build upon.
 - The **broader scientific community**, by contributing to open, transparent, and impactful research.
 
-## Further Reading
-
-Please check out [the following resources](learners/reference.md#litref) for additional materials and recommendations to deepen your understanding of R and R Studio.
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 

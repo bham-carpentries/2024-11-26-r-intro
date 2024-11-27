@@ -80,14 +80,14 @@ built from the same set of components: a **data set**,
 
 Let's start off building an example using the penguins data from earlier.
 First let's create a derived data set to plot! Let's find out if the
-mean body mass of the penguins has changed over time.
+mean body mass of the Adelie penguins has changed over time.
 
 
 ``` r
 penguins_bm <- penguins |>
   filter(species == c("Adelie")) |>
   group_by(year, island, species) |>
-  summarize(mean_body_mass = mean(body_mass_g, na.rm = TRUE)) |>
+  summarize(mean_body_mass = mean(body_mass_g)) |>
   ungroup()
 ```
 
@@ -162,7 +162,7 @@ flipper length (mm) instead of body mass :
 
 
 ``` r
-ggplot(data = penguin, mapping = aes(x = flipper_length_mm, y = body_mass_g)) + geom_point()
+ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g)) + geom_point()
 ```
 
 
@@ -174,16 +174,18 @@ Here is one possible solution:
 
 
 ``` r
-ggplot(data = penguin, mapping = aes(x = flipper_length_mm, y = bill_length_mm)) + geom_point()
+ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = bill_length_mm)) + geom_point()
 ```
 
-``` error
-Error: object 'penguin' not found
-```
+<div class="figure" style="text-align: center">
+<img src="fig/06-plot-ggplot2-rendered-ch1-sol-1.png" alt="Scatter plot showing bill length (mm) versus flipper length (mm) for individual penguins, displaying each species as distinct points. All points are coloured on the plot are coloured black."  />
+<p class="caption">Scatter plot showing bill length (mm) versus flipper length (mm) for individual penguins, displaying each species as distinct points. All points are coloured on the plot are coloured black.</p>
+</div>
 
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
@@ -196,6 +198,7 @@ code from the previous challenge to **color** the points by the "species"
 column. What trends do you see in the data? Are they what you expected?
 
 Hint: Use ?aes or ?ggplot2 to get help on these functions if needed.
+
 :::::::::::::::  solution
 
 ## Solution to challenge 2
@@ -328,7 +331,7 @@ demonstrate we'll go back to our first challenge:
 
 
 ``` r
-ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = bill_length_mm, color=species)) +
+ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = bill_length_mm)) +
   geom_point()
 ```
 
@@ -353,7 +356,8 @@ We can fit a simple relationship to the data by adding another layer,
 
 ``` r
 ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = bill_length_mm)) +
-  geom_point(alpha = 0.5) + geom_smooth(method="lm")
+  geom_point(alpha = 0.5) + 
+  geom_smooth(method="lm")
 ```
 
 ``` output
@@ -369,12 +373,10 @@ We can make the line thicker by *setting* the **linewidth** aesthetic in the
 ``` r
 ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = bill_length_mm)) +
   geom_point(alpha = 0.5) + 
-  geom_smooth(method="lm") + 
   geom_smooth(method="lm", linewidth=1.5)
 ```
 
 ``` output
-`geom_smooth()` using formula = 'y ~ x'
 `geom_smooth()` using formula = 'y ~ x'
 ```
 
