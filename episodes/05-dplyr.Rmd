@@ -29,6 +29,10 @@ select certain observations (rows) or variables (columns), we often group the
 data by a certain variable(s), or we even calculate summary statistics. We can
 do these operations using the normal base R operations:
 
+```{r eval=TRUE, echo=FALSE}
+penguins <- read_csv("data/penguins_teaching.csv", col_types = cols(year = col_character()))
+```
+
 ```{r}
 mean(penguins$body_mass_g[penguins$species == "Adelie"])
 mean(penguins$body_mass_g[penguins$species == "Chinstrap"])
@@ -95,6 +99,9 @@ penguins <- read_csv("data/penguins_teaching.csv", col_types = cols(year = col_c
 penguins
 ```
 
+Notice that we specify that the year column should be loaded as text (character
+data type). We do this because as the dataset only contains three year's worth of data we want to treat "year" as a categorical variable. It is helpful when plotting to store this categorical variable as text. 
+
 We can see that penguins consists of a 344 by 8 `tibble`. We see the variable names, and an abbreviation  indicating what type of data is stored in each variable.
 
 A tibble is a way of storing tabular data - a modern version of data frames, which is part of the tidyverse. 
@@ -130,30 +137,35 @@ head(year_island_bmg)
 ![](fig/13-dplyr-fig1.png){alt='Diagram illustrating use of select function to select two columns of a data frame'}
 
 If we open up `year_island_bmg` we'll see that it only contains the year,
-island and body mass (g) Above we used 'normal' grammar, but the strengths of
+island and body mass (g).  
+
+Note that we can also use select to remove columns we don't want in our dataset:
+
+```{r}
+noyear_noisland_nobmg <- select(penguins, -year, -island, -body_mass_g)
+head(noyear_noisland_nobmg)
+```
+
+
+Above we used 'normal' grammar, but the strengths of
 `dplyr` lie in combining several functions using pipes. Since the pipes grammar
 is unlike anything we've seen in R before, let's repeat what we've done above
 using pipes.
 
 ```{r}
+# before: year_island_bmg <- select(penguins, year, island, body_mass_g)
 year_island_bmg <- penguins |> select(year, island, body_mass_g)
+head(year_island_bmg)
 ```
 
 To help you understand why we wrote that in that way, let's walk through it step
 by step. First we summon the penguins data frame and pass it on, using the pipe
 symbol `|>`, to the next step, which is the `select()` function. In this case
-we don't specify which data object we use in the `select()` function since in
+we don't specify which data object we use in the `select()` function since it
 gets that from the previous pipe. **Fun Fact**: There is a good chance you have
 encountered pipes before in the shell. In R, a pipe symbol is `|>` while in the
 shell it is `|` but the concept is the same!
 
-Note that we want to remove one column only from the `penguins` data, for example,
-removing the `island` column.
-
-```{r}
-smaller_penguins_data <- select(penguins, -island)
-head(smaller_penguins_data) # Notice that the island column has been removed
-```
 
 
 :::::::::::::::::::::::::::::::::::::::::  callout
@@ -183,6 +195,7 @@ island of "Dream", we can combine `select` and `filter`
 dream_year_island_bmg <- penguins |>
     filter(island == "Dream") |>
     select(year, body_mass_g)
+head(dream_year_island_bmg)
 ```
 Notice how this code is indented and formatted over multiple lines to improve readability.
 
@@ -194,10 +207,13 @@ for a specific year (e.g., 2007), we can do as below.
 
 ```{r}
 dream_island_2007 <- penguins |>
-  filter(island == "Dream", year == 2007) |>
+  filter(island == "Dream", year == "2007") |> 
   select(species, body_mass_g)
+
+head(dream_island_2007)
 ```
 
+Notice that 2007 is in quotes ("2007") as the year column is stored as text (character datatype).
 
 As with last time, first we pass the penguins data frame to the `filter()`
 function, then we pass the filtered version of the penguins data frame to the
@@ -227,6 +243,7 @@ You will notice that the structure of the data frame where we used `group_by()`
 value `island` (at least in the example above).
 
 ![](fig/13-dplyr-fig2-updated.png){alt='Diagram illustrating how the group by function oraganizes a data frame into groups'}
+
 :::::::::::: callout
 You may have noticed this output when using the group_by() function:
 
@@ -287,6 +304,8 @@ The function `group_by()` allows us to group by multiple variables. Let's group 
 bm_byyear_byspecies <- penguins |>
     group_by(year, species) |>
     summarize(mean_body_mass_g = mean(body_mass_g))
+
+head(bm_byyear_byspecies)
 ```
 
 That is already quite powerful, but it gets even better! You're not limited to defining 1 new variable in `summarize()`.
@@ -298,6 +317,8 @@ bm_byyear_byspecies <- penguins |>
       mean_body_mass_g = mean(body_mass_g),
       sd_body_mass_g = sd(body_mass_g)
     )
+
+head(bm_byyear_byspecies)
 ```
 
 ## count() and n()
@@ -312,7 +333,7 @@ optionally sort the results in descending order by adding `sort=TRUE`:
 
 ```{r}
 penguins |>
-    filter(year == 2007) |>
+    filter(year == "2007") |>
     count(island, sort = TRUE)
 ```
 
@@ -350,6 +371,8 @@ bm_byyear_byisland_byspecies <- penguins |>
       mean_body_mass_kg = mean(body_mass_kg),
       sd_body_mass_kg = sd(body_mass_kg)
     )
+
+head(bm_byyear_byisland_byspecies)
 ```
 
 ![An illustration of the mutate function [Artwork by @allison_horst](https://twitter.com/allison_horst)](fig/mutate_ccby4_artwork_by_at_allison_horst.png){alt='Cartoon of cute fuzzy monsters dressed up as different X-men characters, working together to add a new column to an existing data frame. Stylized title text reads "dplyr::mutate - add columns, keep existing."'}
@@ -365,7 +388,14 @@ of the data frame will not change) or for updating values depending on this give
 ## keeping all data but "filtering" after a certain condition
 # calculate bill length / depth ratio for only for Adelie penguins
 bill_morph_adelie <- penguins |>
-    mutate(bill_ratio = ifelse(species == "Adelie", bill_length_mm/bill_depth_mm, NA))  
+    mutate(
+      bill_ratio = ifelse(
+        species == "Adelie", 
+        bill_length_mm/bill_depth_mm, 
+        NA
+      )
+    )  
+head(bill_morph_adelie)
 ```
 
 :::::::::::::::::::::::::::::::::::::::  challenge
@@ -410,8 +440,8 @@ ncol(penguins_torgersen)
 
 ## Challenge 2
 
-Calculate the average body mass per species.
-Which species has the heaviest average body mass, and which has the lightest?
+Calculate the average flipper length per species.
+Which species has the longest average flipper length, and which has the shortest?
 
 You should start from the `penguins` tibble.
 
@@ -472,7 +502,7 @@ similar syntax to other dplyr functions.
 
 ```{r}
 body_mass_10penguins_byspecies <- penguins |>
-  filter(year == 2007) |>
+  filter(year == "2007") |> 
   group_by(species) |>
   sample_n(10) |>
   summarize(mean_body_mass = mean(body_mass_g)) |>
@@ -488,10 +518,15 @@ body_mass_10penguins_byspecies
 
 ## Further reading
 We recommend the following resources for some additional reading on the topic of this episode:
+
 - [R for Data Science](https://r4ds.hadley.nz/) (online book)
+
 - [Data Wrangling Cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) (pdf file)
+
 - [Introduction to dplyr](https://dplyr.tidyverse.org/) (online documentation)
+
 - [Data wrangling with R and RStudio](https://www.rstudio.com/resources/webinars/data-wrangling-with-r-and-rstudio/) (online video)
+
 - [Tidyverse Skills for Data Science](https://jhudatascience.org/tidyversecourse/) (online book)
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
