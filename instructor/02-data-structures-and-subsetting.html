@@ -335,7 +335,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Data Structures and Subsetting Data</h1>
-        <p>Last updated on 2024-11-26 |
+        <p>Last updated on 2024-11-27 |
 
         <a href="https://github.com/kkh451/r_intro/edit/main/episodes/02-data-structures-and-subsetting.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -1392,15 +1392,15 @@ _____(weather)
 #    The correct data type is: ____________.
 
 # 4. Correct the 4th temperature data point with the mean of the two given values
-weather$temp[4] &lt;- -3.45
+weather$temperature[4] &lt;- -3.45
 #    print the data again to see the effect
 weather
 
 # 5. Convert the temperature to the right data type
-weather$temp &lt;- ______________(weather$temp)
+weather$temperature &lt;- ______________(weather$temperature)
 
 #    Calculate the mean to test yourself
-mean(weather$temp)
+mean(weather$temperature)
 
 # If you see the correct mean value (and not NA), you did the exercise
 # correctly!</code></pre>
@@ -1627,8 +1627,8 @@ the TAB key.</p>
 <div id="collapseSolution10" class="accordion-collapse collapse" aria-labelledby="headingSolution10" data-bs-parent="#accordionSolution10">
 <div class="accordion-body">
 <p>There are two functions that are synonymous for historic reasons:</p>
-<pre><code><span><span class="va">weather</span><span class="op">$</span><span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu">as.double</span><span class="op">(</span><span class="va">weather</span><span class="op">$</span><span class="va">temp</span><span class="op">)</span></span>
-<span><span class="va">weather</span><span class="op">$</span><span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu">as.numeric</span><span class="op">(</span><span class="va">weather</span><span class="op">$</span><span class="va">temp</span><span class="op">)</span></span></code></pre>
+<pre><code><span><span class="va">weather</span><span class="op">$</span><span class="va">temperature</span> <span class="op">&lt;-</span> <span class="fu">as.double</span><span class="op">(</span><span class="va">weather</span><span class="op">$</span><span class="va">temperature</span><span class="op">)</span></span>
+<span><span class="va">weather</span><span class="op">$</span><span class="va">temperature</span> <span class="op">&lt;-</span> <span class="fu">as.numeric</span><span class="op">(</span><span class="va">weather</span><span class="op">$</span><span class="va">temperature</span><span class="op">)</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -1898,8 +1898,8 @@ any links that you are not going to use.
   "url": "https://kkh451.github.io/r_intro/instructor/02-data-structures-and-subsetting.html",
   "identifier": "https://kkh451.github.io/r_intro/instructor/02-data-structures-and-subsetting.html",
   "dateCreated": "2024-09-01",
-  "dateModified": "2024-11-26",
-  "datePublished": "2024-11-26"
+  "dateModified": "2024-11-27",
+  "datePublished": "2024-11-27"
 }
 
   </script><script>

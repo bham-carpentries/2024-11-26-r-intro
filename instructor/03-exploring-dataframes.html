@@ -239,6 +239,7 @@
 <li><a href="#removing-rows">Removing rows</a></li>
 <li><a href="#removing-columns">Removing columns</a></li>
 <li><a href="#appending-to-a-data-frame">Appending to a data frame</a></li>
+<li><a href="#saving-our-data-frame">Saving Our Data Frame</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -339,7 +340,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Exploring Data Frames</h1>
-        <p>Last updated on 2024-11-26 |
+        <p>Last updated on 2024-11-27 |
 
         <a href="https://github.com/kkh451/r_intro/edit/main/episodes/03-exploring-dataframes.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -711,6 +712,19 @@ data frames together with <code>rbind</code>:</p>
 7     dream       -2.60        1  12
 8 deception       -3.45        1  13</code></pre>
 </div>
+</section><section><h2 class="section-heading" id="saving-our-data-frame">Saving Our Data Frame<a class="anchor" aria-label="anchor" href="#saving-our-data-frame"></a></h2>
+<hr class="half-width"><p>We can use the write.table function to save our new data frame:</p>
+<div class="codewrapper sourceCode" id="cb43">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">write.table</span><span class="op">(</span></span>
+<span>  file<span class="op">=</span><span class="st">"results/prepared_weather.csv"</span>,</span>
+<span>  sep<span class="op">=</span><span class="st">","</span>, </span>
+<span>  quote<span class="op">=</span><span class="cn">FALSE</span>, </span>
+<span>  row.names<span class="op">=</span><span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre>
+</div>
 <div id="challenge-1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -720,7 +734,7 @@ data frames together with <code>rbind</code>:</p>
 <div class="callout-content">
 <p>You can create a new data frame right from within R with the
 following syntax:</p>
-<div class="codewrapper sourceCode" id="cb43">
+<div class="codewrapper sourceCode" id="cb44">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -746,9 +760,9 @@ person’s answer to the question, “Is it time for coffee break?”</p>
   Solution to Challenge 1
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb44">
+<div class="codewrapper sourceCode" id="cb45">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -842,8 +856,8 @@ any links that you are not going to use.
   "url": "https://kkh451.github.io/r_intro/instructor/03-exploring-dataframes.html",
   "identifier": "https://kkh451.github.io/r_intro/instructor/03-exploring-dataframes.html",
   "dateCreated": "2024-09-01",
-  "dateModified": "2024-11-26",
-  "datePublished": "2024-11-26"
+  "dateModified": "2024-11-27",
+  "datePublished": "2024-11-27"
 }
 
   </script><script>
