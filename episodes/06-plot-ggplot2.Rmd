@@ -63,13 +63,13 @@ built from the same set of components: a **data set**,
 
 Let's start off building an example using the penguins data from earlier.
 First let's create a derived data set to plot! Let's find out if the
-mean body mass of the penguins has changed over time.
+mean body mass of the Adelie penguins has changed over time.
 
 ```{r}
 penguins_bm <- penguins |>
   filter(species == c("Adelie")) |>
   group_by(year, island, species) |>
-  summarize(mean_body_mass = mean(body_mass_g, na.rm = TRUE)) |>
+  summarize(mean_body_mass = mean(body_mass_g)) |>
   ungroup()
 
 ```
@@ -130,7 +130,7 @@ Modify the example so that the figure shows how bill length (mm) varies with
 flipper length (mm) instead of body mass :
 
 ```{r, eval=FALSE}
-ggplot(data = penguin, mapping = aes(x = flipper_length_mm, y = body_mass_g)) + geom_point()
+ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g)) + geom_point()
 ```
 
 
@@ -141,12 +141,13 @@ ggplot(data = penguin, mapping = aes(x = flipper_length_mm, y = body_mass_g)) + 
 Here is one possible solution:
 
 ```{r ch1-sol, fig.cap="Scatter plot showing bill length (mm) versus flipper length (mm) for individual penguins, displaying each species as distinct points. All points are coloured on the plot are coloured black."}
-ggplot(data = penguin, mapping = aes(x = flipper_length_mm, y = bill_length_mm)) + geom_point()
+ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = bill_length_mm)) + geom_point()
 ```
 
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
@@ -159,6 +160,7 @@ code from the previous challenge to **color** the points by the "species"
 column. What trends do you see in the data? Are they what you expected?
 
 Hint: Use ?aes or ?ggplot2 to get help on these functions if needed.
+
 :::::::::::::::  solution
 
 ## Solution to challenge 2
@@ -266,7 +268,7 @@ ggplot2 also makes it easy to overlay statistical models over the data. To
 demonstrate we'll go back to our first challenge:
 
 ```{r flipper-vs-bill-scatter3, message=FALSE}
-ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = bill_length_mm, color=species)) +
+ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = bill_length_mm)) +
   geom_point()
 ```
 
@@ -288,7 +290,8 @@ We can fit a simple relationship to the data by adding another layer,
 
 ```{r lm-fit, fig.alt="Scatter plot of flipperer length vs bill length with a blue trend line summarising the relationship between variables, and gray shaded area indicating 95% confidence intervals for that trend line."}
 ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = bill_length_mm)) +
-  geom_point(alpha = 0.5) + geom_smooth(method="lm")
+  geom_point(alpha = 0.5) + 
+  geom_smooth(method="lm")
 ```
 
 We can make the line thicker by *setting* the **linewidth** aesthetic in the
@@ -297,7 +300,6 @@ We can make the line thicker by *setting* the **linewidth** aesthetic in the
 ```{r lm-fit2, fig.alt="Scatter plot of flipper length vs bill length with a trend line summarising the relationship between variables. The trend line is slightly thicker than in the previous figure."}
 ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = bill_length_mm)) +
   geom_point(alpha = 0.5) + 
-  geom_smooth(method="lm") + 
   geom_smooth(method="lm", linewidth=1.5)
 ```
 
