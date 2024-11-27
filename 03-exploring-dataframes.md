@@ -320,6 +320,7 @@ We can use the write.table function to save our new data frame:
 
 ``` r
 write.table(
+  weather,
   file="results/prepared_weather.csv",
   sep=",", 
   quote=FALSE, 

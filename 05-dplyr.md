@@ -30,8 +30,17 @@ data by a certain variable(s), or we even calculate summary statistics. We can
 do these operations using the normal base R operations:
 
 
-``` error
-Error in read_csv("data/penguins_teaching.csv", col_types = cols(year = col_character())): could not find function "read_csv"
+``` output
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 ```
 
 
@@ -39,24 +48,24 @@ Error in read_csv("data/penguins_teaching.csv", col_types = cols(year = col_char
 mean(penguins$body_mass_g[penguins$species == "Adelie"])
 ```
 
-``` error
-Error: object 'penguins' not found
+``` output
+[1] 3703.959
 ```
 
 ``` r
 mean(penguins$body_mass_g[penguins$species == "Chinstrap"])
 ```
 
-``` error
-Error: object 'penguins' not found
+``` output
+[1] 3733.088
 ```
 
 ``` r
 mean(penguins$body_mass_g[penguins$species == "Gentoo"])
 ```
 
-``` error
-Error: object 'penguins' not found
+``` output
+[1] 5068.966
 ```
 
 But this isn't very *nice* because there is a fair bit of repetition. Repeating
@@ -877,9 +886,9 @@ body_mass_10penguins_byspecies
 # A tibble: 3 × 2
   species   mean_body_mass
   <chr>              <dbl>
-1 Gentoo             4875 
-2 Chinstrap          3732.
-3 Adelie             3778.
+1 Gentoo             5010 
+2 Chinstrap          3658.
+3 Adelie             3785 
 ```
 
 :::::::::::::::::::::::::
