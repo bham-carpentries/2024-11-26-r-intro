@@ -35,7 +35,7 @@ do these operations using the normal base R operations:
 ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
 ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
 ✔ purrr     1.0.2     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
@@ -886,9 +886,9 @@ body_mass_10penguins_byspecies
 # A tibble: 3 × 2
   species   mean_body_mass
   <chr>              <dbl>
-1 Gentoo              4930
-2 Chinstrap           3580
-3 Adelie              3490
+1 Gentoo             5405 
+2 Chinstrap          3648.
+3 Adelie             3500.
 ```
 
 :::::::::::::::::::::::::
